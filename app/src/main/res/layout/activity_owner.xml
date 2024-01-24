@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#00041C"
+    android:padding="16dp">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set futsal time"
+        android:id="@+id/buttonCreateTimestamp"/>
+
+    <TextView
+        android:id="@+id/textViewStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Start Time"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/buttonSelectStartTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Start Time"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/textViewEndTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_end_time"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/buttonSelectEndTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set End Time"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/buttonDeleteTimeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete Time Stamp"
+        android:visibility="invisible"/>
+
+
+
+
+</LinearLayout>
+

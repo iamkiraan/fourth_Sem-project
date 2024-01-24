@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00041C"
+    tools:context=".MainActivity">
+
+  <View
+      android:layout_width="18dp"
+      android:layout_height="120dp"
+      android:id="@+id/topView1"
+      android:layout_alignParentEnd="true"
+      android:layout_marginEnd="20dp"
+      android:background="#FFFFFF"/>
+    <View
+        android:visibility="invisible"
+        android:layout_width="18dp"
+        android:layout_height="90dp"
+        android:id="@+id/topView2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:background="#5AB397"/>
+    <View
+        android:visibility="invisible"
+        android:layout_width="18dp"
+        android:layout_height="60dp"
+        android:id="@+id/topView3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="80dp"
+        android:background="#AC2732"/>
+    <View
+        android:visibility="invisible"
+        android:layout_width="18dp"
+        android:layout_height="60dp"
+        android:id="@+id/topView4"
+       android:layout_alignParentBottom="true"
+        android:layout_marginStart="80dp"
+        android:background="#AC2732"/>
+    <View
+        android:visibility="invisible"
+        android:layout_width="18dp"
+        android:layout_height="90dp"
+        android:id="@+id/topView5"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:background="#5AB397"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="120dp"
+        android:id="@+id/topView6"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:background="#FFFFFF"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:visibility="invisible"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:id="@+id/Logo"
+            android:src="@drawable/logo"/>
+      <TextView
+          android:visibility="invisible"
+          android:id="@+id/futsalName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Hamro Futsal"
+          android:textSize="25sp"
+          android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"/>
+      <TextView
+          android:visibility="invisible"
+          android:id="@+id/message"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textColor="#FFFFFF"
+          android:textSize="16sp"
+        android:text="Welcome to Hamro Futsal. A liberate way to change the Futsal management through evolving technologies."/>
+    </LinearLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_centerInParent="true"
+      android:gravity="center">
+
+    <Button
+        android:id="@+id/Button"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Get Started"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.896" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
