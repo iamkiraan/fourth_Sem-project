@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Hamro Futsal"
 include(":app")
- 
+include(":futsalowner")
