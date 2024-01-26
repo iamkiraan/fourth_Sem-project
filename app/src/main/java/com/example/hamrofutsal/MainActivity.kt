@@ -1,9 +1,9 @@
 package com.example.hamrofutsal
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -12,7 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var message: TextView
+    //private lateinit var message: TextView
     private lateinit var futsalName: TextView
     private lateinit var logo: ImageView
     private lateinit var  topView1 : View
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val decorView: View = window.decorView
@@ -36,8 +37,8 @@ class MainActivity : AppCompatActivity() {
         decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 
         setContentView(R.layout.activity_main)
-        message = findViewById(R.id.message)
-        futsalName = findViewById(R.id.futsalName)
+        //message = findViewById(R.id.message)
+        futsalName = findViewById(R.id.futsalNamee)
         logo = findViewById(R.id.Logo)
         topView1= findViewById(R.id.topView1)
         topView2= findViewById(R.id.topView2)
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val logoAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.zoom_animation)
-        val messageAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.hold_animation)
+        //val messageAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.hold_animation)
         val text1Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
         val text2Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
         val text3Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
@@ -146,45 +147,45 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-        fustalAnimation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-                message.visibility = View.VISIBLE
-                val animateText = message.text.toString()
-                message.text = ""
-                val duration = animateText.length * 120L
-
-                val countDownTimer = object : CountDownTimer(duration, 15) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        if (count < animateText.length) {
-                            message.text = "${message.text}${animateText[count]}"
-                            count++
-                            Button.visibility = View.VISIBLE
-                            Button.startAnimation(ButtonAnimation)
-
-                        }
-
-                    }
-
-
-                    override fun onFinish() {
-
-
-                    }
-                }
-
-                countDownTimer.start()
-
-            }
-
-            override fun onAnimationRepeat(animation: Animation?) {
-
-
-            }
-        })
+//        fustalAnimation.setAnimationListener(object : Animation.AnimationListener {
+//            override fun onAnimationStart(animation: Animation?) {
+//
+//            }
+//
+//            override fun onAnimationEnd(animation: Animation?) {
+//                message.visibility = View.VISIBLE
+//                val animateText = message.text.toString()
+//                message.text = ""
+//                val duration = animateText.length * 120L
+//
+//                val countDownTimer = object : CountDownTimer(duration, 15) {
+//                    override fun onTick(millisUntilFinished: Long) {
+//                        if (count < animateText.length) {
+//                            message.text = "${message.text}${animateText[count]}"
+//                            count++
+//                            Button.visibility = View.VISIBLE
+//                            Button.startAnimation(ButtonAnimation)
+//
+//                        }
+//
+//                    }
+//
+//
+//                    override fun onFinish() {
+//
+//
+//                    }
+//                }
+//
+//                countDownTimer.start()
+//
+//            }
+//
+//            override fun onAnimationRepeat(animation: Animation?) {
+//
+//
+//            }
+//        })
 
 
     }

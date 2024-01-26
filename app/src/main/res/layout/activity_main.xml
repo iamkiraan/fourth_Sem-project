@@ -68,7 +68,7 @@
             android:src="@drawable/logo"/>
       <TextView
           android:visibility="invisible"
-          android:id="@+id/futsalName"
+          android:id="@+id/futsalNamee"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="Hamro Futsal"
@@ -76,15 +76,6 @@
           android:layout_marginTop="20dp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"/>
-      <TextView
-          android:visibility="invisible"
-          android:id="@+id/message"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:textColor="#FFFFFF"
-          android:textSize="16sp"
-        android:text="Welcome to Hamro Futsal. A liberate way to change the Futsal management through evolving technologies."/>
     </LinearLayout>
 
   <androidx.constraintlayout.widget.ConstraintLayout

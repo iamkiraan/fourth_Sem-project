@@ -17,9 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HamroFutsal"
         tools:targetApi="31">
-        <activity
-            android:name=".SharedViewModelActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".SharedViewModelActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".UserProfileActivity"
             android:exported="false" />
