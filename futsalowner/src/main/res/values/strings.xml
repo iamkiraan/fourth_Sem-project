@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name" />
+    <string name="available_slots">Available Slots</string>
+    <string name="booked_time">Booked Time</string>
 </resources>

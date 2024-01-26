@@ -53,7 +53,7 @@ class signinActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             else if (userEmail == "admin" || userPassword == "admin") {
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Dashboard::class.java)
                 startActivity(intent)
             }
             else{
