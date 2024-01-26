@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "278610600122",
+    "firebase_url": "https://hamro-futsal-4e9fb-default-rtdb.firebaseio.com",
+    "project_id": "hamro-futsal-4e9fb",
+    "storage_bucket": "hamro-futsal-4e9fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278610600122:android:019fc08b780e4526b2e283",
+        "android_client_info": {
+          "package_name": "com.example.futsalowner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_lPKlwmom0cP00nWu5y0IrSYhbd081dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278610600122:android:d77e9c922369859fb2e283",
+        "android_client_info": {
+          "package_name": "com.example.hamrofutsal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_lPKlwmom0cP00nWu5y0IrSYhbd081dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
