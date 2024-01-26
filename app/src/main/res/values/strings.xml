@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Hamro Futsal</string>
     <string name="select_end_time">Select End Time</string>
+    <string name="available_slots" />
+    <string name="booked_slots" />
+    <string name="number">number</string>
 </resources>
