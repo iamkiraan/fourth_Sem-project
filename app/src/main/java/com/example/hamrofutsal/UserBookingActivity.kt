@@ -1,5 +1,6 @@
 package com.example.hamrofutsal
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -19,18 +20,18 @@ class UserBookingActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private val originalTextMap = mutableMapOf<Button, String>()
     private var selectedButtonId: Int = -1
-    // Change to String type
     private var status = ""
 
-    // Firebase Database
     private lateinit var database: FirebaseDatabase
     private lateinit var bookingsRef: DatabaseReference
+
+    private var isButtonBooked = false
+    private var bookedButtonId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_booking)
 
-        // Initialize Firebase Database
         database = FirebaseDatabase.getInstance()
         bookingsRef = database.reference.child("bookings")
 
@@ -55,36 +56,77 @@ class UserBookingActivity : AppCompatActivity() {
     }
 
     private fun onButtonClick(button: Button) {
-        // Store the ID of the clicked button as a string
-        selectedButtonId = button.id
+        if (isButtonBooked) {
+            showDeletePreviousBookingDialog(button)
+        } else {
+            selectedButtonId = button.id
 
+            val alertDialogBuilder = AlertDialog.Builder(this)
+            alertDialogBuilder.setTitle("Book or Hold?")
+                .setPositiveButton("Book") { _, _ ->
+                    bookButton(button)
+                }
+                .setNegativeButton("Hold") { _, _ ->
+                    holdButton(button)
+                }
+                .setNeutralButton("Back") { _, _ ->
+                    backButton(button)
+                }
+                .setCancelable(false)
+                .show()
+        }
+    }
+
+    private fun showDeletePreviousBookingDialog(newButton: Button) {
         val alertDialogBuilder = AlertDialog.Builder(this)
-        alertDialogBuilder.setTitle("Book or Hold?")
-            .setPositiveButton("Book") { _, _ ->
-                bookButton(button)
+        alertDialogBuilder.setTitle("You have already booked a slot.")
+            .setMessage("Do you want to delete the previous booking?")
+            .setPositiveButton("Delete") { _, _ ->
+                deletePreviousBooking(newButton)
             }
-            .setNegativeButton("Hold") { _, _ ->
-                holdButton(button)
+            .setNegativeButton("Cancel") { _, _ ->
+               showToast("you cancelled booking")
             }
             .setCancelable(false)
             .show()
     }
 
+    private fun deletePreviousBooking(newButton: Button) {
+        if (bookedButtonId != -1) {
+            removeBookingFromDatabase(bookedButtonId)
+            val previousButton = buttons.find { it.id == bookedButtonId }
+            restoreButtonState(previousButton)
+            showToast("Previous booking deleted.")
+            bookButton(newButton)
+        }
+    }
+
+    private fun removeBookingFromDatabase(buttonId: Int) {
+        bookingsRef.child(buttonId.toString()).removeValue()
+    }
+
     private fun bookButton(button: Button) {
+        if (originalTextMap.containsKey(button) && originalTextMap[button]?.contains("Booked") == true) {
+            showToast("Already booked slot. Please choose another time for booking.")
+            return
+        }
+
         originalTextMap[button] = button.text.toString()
         val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
         button.text = "Booked ($currentTime)"
         button.isEnabled = false
         status = "Booked"
+        isButtonBooked = true
+        bookedButtonId = selectedButtonId
 
-        showToast("Button booked!")
+        showToast("Time booked!")
 
-        // Save booking data to the database
         saveBookingToDatabase(selectedButtonId)
 
         handler.postDelayed({
             restoreButtonState(button)
-            showToast("Button available again")
+            showToast("Time slot available again")
+            isButtonBooked = false
         }, 3600000)
     }
 
@@ -94,31 +136,32 @@ class UserBookingActivity : AppCompatActivity() {
         button.text = "Hold ($currentTime)"
         button.isEnabled = false
         status = "Hold"
-        showToast("Button on hold for 30 seconds")
+        showToast("Time on hold for 30 seconds")
 
         handler.postDelayed({
             restoreButtonState(button)
         }, 30000)
     }
 
-    private fun restoreButtonState(button: Button) {
-        button.text = originalTextMap[button]
-        button.isEnabled = true
+    private fun backButton(button: Button) {
+        val intent = Intent(this@UserBookingActivity, UserBookingActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun restoreButtonState(button: Button?) {
+        button?.let {
+            it.text = originalTextMap[it]
+            it.isEnabled = true
+        }
     }
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun saveBookingToDatabase(buttonId : Int) {
-        // Get user information (You need to implement this part)
+    private fun saveBookingToDatabase(buttonId: Int) {
         val name = intent.getStringExtra("semail") ?: ""
-
-        // Perform actions to acknowledge the booking in the database
-        // For simplicity, let's assume you have a "bookings" node in the database
-        // and you want to update the status to "Acknowledged".
-
-        // val status = "Booked" // Set the appropriate status
         val bookingData = BookingData(name, buttonId.toInt(), status)
 
         bookingsRef.child(buttonId.toString()).setValue(bookingData)

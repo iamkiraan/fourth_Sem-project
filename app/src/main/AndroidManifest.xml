@@ -16,15 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HamroFutsal"
         tools:targetApi="31">
-<<<<<<< HEAD
-<!--        <activity-->
-<!--            android:name=".SharedViewModelActivity"-->
-<!--            android:exported="false" />-->
-=======
         <activity
             android:name=".OwnerBookingActivity"
             android:exported="false" />
->>>>>>> 530c1fc (Your commit message)
         <activity
             android:name=".UserBookingActivity"
             android:exported="false" />
