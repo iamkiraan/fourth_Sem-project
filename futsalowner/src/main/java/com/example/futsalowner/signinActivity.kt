@@ -7,23 +7,26 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-//import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth
+
+
 
 class signinActivity : AppCompatActivity() {
 
     private lateinit var email: EditText
     private lateinit var password: EditText
     private lateinit var loginButton: Button
-    //private lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     private lateinit var forgetPasswordText: TextView
 
+    private var check : Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-//        auth = FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
 
         email = findViewById(R.id.email)
         password = findViewById(R.id.password)
@@ -52,22 +55,21 @@ class signinActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            else if (userEmail == "admin" || userPassword == "admin") {
-                val intent = Intent(this, Dashboard::class.java)
-                startActivity(intent)
-            }
-            else{
-                Toast.makeText(this, "Email and password are invalid!!", Toast.LENGTH_SHORT).show()
+            else {
+                auth.signInWithEmailAndPassword(userEmail, userPassword)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val intent = Intent(this, Dashboard::class.java)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(baseContext, "User not found.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
             }
 
-//            auth.signInWithEmailAndPassword(userEmail, userPassword)
-//                .addOnCompleteListener(this) { task ->
-//                    if (task.isSuccessful) {
-//                            finish()
-//                        } else {
-//                            Toast.makeText(baseContext, "User not found.", Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
+
+
         }
 
     }
