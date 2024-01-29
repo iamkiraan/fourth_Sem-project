@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import futsalLocation.ManakamanaFutsal
 
 class UserDashboardActivity : AppCompatActivity() {
     private lateinit var buttonNav: BottomAppBar
@@ -40,11 +41,11 @@ class UserDashboardActivity : AppCompatActivity() {
         futsalButton5 = findViewById(R.id.HamroFutsal5)
         futsalButton6 = findViewById(R.id.HamroFutsal6)
 
-        btnLogout =findViewById(R.id.btnLogout)
+        //btnLogout =findViewById(R.id.btnLogout)
 
-        btnLogout.setOnClickListener {
-            logOut()
-        }
+//        btnLogout.setOnClickListener {
+//            logOut()
+//        }
 
 
 
@@ -82,7 +83,7 @@ class UserDashboardActivity : AppCompatActivity() {
 
             it.startAnimation(clickAnimation)
 
-            val intent = Intent(this, UserBookingActivity::class.java)
+            val intent = Intent(this, ManakamanaFutsal::class.java)
             startActivity(intent)
         }
         futsalButton2.setOnClickListener {
@@ -123,10 +124,10 @@ class UserDashboardActivity : AppCompatActivity() {
     }
     // clickable button yeta samma ho 6 ota futsal ko lagi
 
-    private fun logOut() {
-        val signInIntent = Intent(this, signinActivity::class.java)
-        startActivity(signInIntent)
-        finish()
-    }
+//    private fun logOut() {
+//        val signInIntent = Intent(this, signinActivity::class.java)
+//        startActivity(signInIntent)
+//        finish()
+//    }
 }
 
