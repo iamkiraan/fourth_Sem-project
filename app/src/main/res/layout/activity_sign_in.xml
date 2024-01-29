@@ -84,6 +84,7 @@
                 android:background="@drawable/custom_edittext"
                 android:layout_marginTop="40dp"
                 android:padding="8dp"
+                android:textColorHint="#686666"
                 android:hint="phone number"
                 android:drawableStart="@drawable/baseline_call_24"
                 android:textColor="@color/black"
@@ -95,13 +96,11 @@
                 android:background="@drawable/custom_edittext"
                 android:layout_marginTop="40dp"
                 android:padding="8dp"
+                android:textColorHint="#686666"
                 android:hint="Password"
                 android:drawableLeft="@drawable/baseline_https_24"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp"/>
-
-
-
 
             <TextView
                 android:id="@+id/forgetPassword"
