@@ -85,7 +85,7 @@ class UserBookingActivity : AppCompatActivity() {
                 deletePreviousBooking(newButton)
             }
             .setNegativeButton("Cancel") { _, _ ->
-               showToast("you cancelled booking")
+                showToast("you cancelled booking")
             }
             .setCancelable(false)
             .show()

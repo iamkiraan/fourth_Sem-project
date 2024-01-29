@@ -2,8 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -17,12 +22,47 @@
         android:theme="@style/Theme.HamroFutsal"
         tools:targetApi="31">
         <activity
+            android:name="futsalLocation.JadibutiFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.ChysalFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.KickFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.ImadolFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.PrimeFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.ManakamanaFutsal"
+            android:exported="false" />
+        <activity
+            android:name=".UserDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserHomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".OwnerBookingActivity"
             android:exported="false" />
         <activity
             android:name=".UserBookingActivity"
             android:exported="false" />
-
         <activity
             android:name=".OwnerProfileActivity"
             android:exported="false" />
@@ -34,10 +74,9 @@
             android:exported="false" />
         <activity
             android:name=".ResetPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".UserActivity"
-            android:exported="false" />
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".UserActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".OwnerActivity"
             android:exported="false" />

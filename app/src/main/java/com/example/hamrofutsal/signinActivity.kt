@@ -3,12 +3,14 @@ package com.example.hamrofutsal
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import futsalLocation.ManakamanaFutsal
 
 class signinActivity : AppCompatActivity() {
     private lateinit var email: EditText
@@ -18,6 +20,8 @@ class signinActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        supportActionBar?.hide()
         setContentView(R.layout.activity_sign_in)
 
         // Initialize Firebase Authentication
@@ -49,16 +53,14 @@ class signinActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(semail, spassword)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            // Login successful
-                            Log.d("SignInActivity", "User authentication successful")
-                            val intent = Intent(this, UserBookingActivity::class.java)
-                           intent.putExtra("semail",semail)
-
+                            Log.d("signinActivity", "User authentication successful")
+                            val intent = Intent(this@signinActivity,ManakamanaFutsal::class.java)
+                            intent.putExtra("semail", semail)
                             startActivity(intent)
+                            finish() // Close the current activity after successful sign-in
                         } else {
-                            // If sign in fails, log the exception
                             val exception = task.exception
-                            Log.e("SignInActivity", "Authentication failed", exception)
+                            Log.e("signinActivity", "Authentication failed", exception)
                             Toast.makeText(
                                 this,
                                 "Authentication failed. ${exception?.message}",
@@ -66,6 +68,7 @@ class signinActivity : AppCompatActivity() {
                             ).show()
                         }
                     }
+
             }
         }
     }

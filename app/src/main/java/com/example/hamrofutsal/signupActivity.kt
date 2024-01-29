@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseException
@@ -26,9 +28,12 @@ class signupActivity : AppCompatActivity() {
     private lateinit var signuppassword: EditText
     private lateinit var signupcpassword: EditText
     private lateinit var verificationId: String
+    private lateinit var loginText : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_FULLSCREEN
+        supportActionBar?.hide()
         setContentView(R.layout.activity_signup)
         supportActionBar?.title = "Register"
 
@@ -40,6 +45,11 @@ class signupActivity : AppCompatActivity() {
         signupemail = findViewById(R.id.email)
         signuppassword = findViewById(R.id.password)
         signupcpassword = findViewById(R.id.Cpassword)
+        loginText = findViewById(R.id.login)
+        loginText.setOnClickListener{
+            val intent= Intent(this,signinActivity::class.java)
+            startActivity(intent)
+        }
 
         verifyOTP.setOnClickListener {
             val name = signupname.text.toString()
