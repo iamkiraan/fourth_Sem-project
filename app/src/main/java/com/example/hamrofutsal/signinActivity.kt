@@ -10,8 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import futsalLocation.ManakamanaFutsal
-
 class signinActivity : AppCompatActivity() {
     private lateinit var email: EditText
     private lateinit var password: EditText
@@ -54,7 +52,7 @@ class signinActivity : AppCompatActivity() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Log.d("signinActivity", "User authentication successful")
-                            val intent = Intent(this@signinActivity,ManakamanaFutsal::class.java)
+                            val intent = Intent(this@signinActivity,BookingData::class.java)
                             intent.putExtra("semail", semail)
                             startActivity(intent)
                             finish() // Close the current activity after successful sign-in
