@@ -8,10 +8,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class signinActivity : AppCompatActivity() {
+
+    private lateinit var database: FirebaseDatabase
+    private lateinit var clientRef: DatabaseReference
 
     private lateinit var email: EditText
     private lateinit var password: EditText
@@ -19,12 +23,14 @@ class signinActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var forgetPasswordText: TextView
 
-    private var check : Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
+
+        database = FirebaseDatabase.getInstance()
+        clientRef = database.getReference("users")
 
         auth = FirebaseAuth.getInstance()
 
@@ -52,24 +58,23 @@ class signinActivity : AppCompatActivity() {
 
 
             if (userEmail.isEmpty() || userPassword.isEmpty()) {
-                Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
-            }
-            else {
+            } else {
                 auth.signInWithEmailAndPassword(userEmail, userPassword)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+
                             val intent = Intent(this, Dashboard::class.java)
                             startActivity(intent)
+//
                         } else {
-                            Toast.makeText(baseContext, "User not found.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(baseContext, "User not found.", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
-
             }
-
-
-
         }
 
     }

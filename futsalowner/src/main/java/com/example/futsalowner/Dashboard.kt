@@ -1,49 +1,41 @@
 package com.example.futsalowner
 
-import android.Manifest
+
 import android.annotation.SuppressLint
-import android.app.AlarmManager
+import android.app.ActivityManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.BroadcastReceiver
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
-import com.google.android.gms.tasks.OnCompleteListener
+import com.example.futsalowner.MyForegroundServices.Companion.CHANNEL_ID
 import com.google.firebase.database.*
-import com.google.firebase.messaging.FirebaseMessaging
-import com.google.firebase.messaging.FirebaseMessagingService
-import com.google.firebase.messaging.RemoteMessage
-import java.util.Calendar
 
 
-const val CHANNEL_ID = "channelId"
-const val NOTIFICATION_ID = 0
+
+
 class Dashboard : AppCompatActivity() {
-
+    private lateinit var name: String
+    private lateinit var status: String
+    private var id = 0
 
 
     // Firebase Database
     private lateinit var database: FirebaseDatabase
     private lateinit var bookingsRef: DatabaseReference
 
-    @SuppressLint("MissingInflatedId", "SuspiciousIndentation", "StringFormatInvalid",
+    @SuppressLint(
+        "MissingInflatedId", "SuspiciousIndentation", "StringFormatInvalid",
         "ScheduleExactAlarm"
     )
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,124 +43,134 @@ class Dashboard : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
 
 
-        // Initialize Firebase Database
-//        database = FirebaseDatabase.getInstance()
-//        bookingsRef = database.getReference("bookings")
-//
-//        val linearLayout: LinearLayout = findViewById(R.id.linearLayout)
-//
-//        // Clear previous data
-//        linearLayout.removeAllViews()
-//
-//        bookingsRef.addChildEventListener(object : ChildEventListener {
-//
-//            @SuppressLint("SetTextI18n")
-//            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
-//                // A new child has been added
-//                val buttonId = dataSnapshot.child("buttonId").value.toString()
-//                val status = dataSnapshot.child("status").value.toString()
-//                val name = dataSnapshot.child("name").value.toString()
-//
-//                val textView = TextView(this@Dashboard)
-//                textView.text = "Booked for: $buttonId\nStatus: $status\nBooked by: $name\n\n"
-//                linearLayout.addView(textView)
-//                textView.tag = dataSnapshot.key // Store the key as a tag for later reference
-//            }
-//
-//            override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
-//                // Handle child node change if needed
-//            }
-//
-//            override fun onChildRemoved(dataSnapshot: DataSnapshot) {
-//                // A child has been removed
-//                val key = dataSnapshot.key // Get the key of the removed child
-//                // Find and remove the corresponding TextView from the LinearLayout
-//                linearLayout.findViewWithTag<TextView>(key)?.let {
-//                    linearLayout.removeView(it)
-//                }
-//            }
-//
-//            override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
-//                // Handle child node move if needed
-//            }
-//
-//            @SuppressLint("SetTextI18n")
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                // Handle errors
-//                val textView = TextView(this@Dashboard)
-//                textView.text = "Error: ${databaseError.message}"
-//                linearLayout.addView(textView)
-//            }
-//        })
+        //Initialize Firebase Database
+        database = FirebaseDatabase.getInstance()
+        bookingsRef = database.getReference("bookings")
+
+        val linearLayout: LinearLayout = findViewById(R.id.linearLayout)
+
+        // Clear previous data
+        linearLayout.removeAllViews()
+//        val serviceIntent = Intent(this, NotificationForegroundService::class.java)
+//        ContextCompat.startForegroundService(this, serviceIntent)
 
 
-        createNotificationChannel()
-        scheduleNotification()
+        bookingsRef.addChildEventListener(object : ChildEventListener {
+
+            @SuppressLint("SetTextI18n")
+            override fun onChildAdded(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                // A new child has been added
+                val buttonId = dataSnapshot.child("buttonId").value.toString()
+                status = dataSnapshot.child("status").value.toString()
+                name = dataSnapshot.child("name").value.toString()
+
+                val textView = TextView(this@Dashboard)
+                textView.text = "Booked for: $buttonId\nStatus: $status\nBooked by: $name\n\n"
+                linearLayout.addView(textView)
+                textView.tag = dataSnapshot.key
+                id++
+                //sendNotification()
+
+                //startForegroundService(name,status,id)
 
 
-    }
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                "Channel Name",
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-                description = "Channel Description"
             }
-            val notificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
+
+
+            override fun onChildChanged(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                // Handle child node change if needed
+            }
+
+            override fun onChildRemoved(dataSnapshot: DataSnapshot) {
+                // A child has been removed
+                val key = dataSnapshot.key // Get the key of the removed child
+                // Find and remove the corresponding TextView from the LinearLayout
+                linearLayout.findViewWithTag<TextView>(key)?.let {
+                    linearLayout.removeView(it)
+                }
+            }
+
+            override fun onChildMoved(dataSnapshot: DataSnapshot, previousChildName: String?) {
+                // Handle child node move if needed
+            }
+
+            @SuppressLint("SetTextI18n")
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle errors
+                val textView = TextView(this@Dashboard)
+                textView.text = "Error: ${databaseError.message}"
+                linearLayout.addView(textView)
+            }
+        })
+
+//        val serviceIntent = Intent(this@Dashboard, MyForegroundServices::class.java)
+//        startService(serviceIntent)
+
+
     }
 
-    @SuppressLint("ScheduleExactAlarm")
-    private fun scheduleNotification() {
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, NotificationReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            NOTIFICATION_ID,
-            intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
 
-        val calendar = Calendar.getInstance().apply {
-            timeInMillis = System.currentTimeMillis()
-            // Set the desired time for the notification (e.g., 10:00 AM)
-            set(Calendar.HOUR_OF_DAY, 12)
-            set(Calendar.MINUTE, 40)
-            set(Calendar.SECOND, 40)
-        }
+//    createNotificationChannel()
 
-        // Set alarm to trigger at the specified time
-        alarmManager.setExact(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            pendingIntent
-        )
-    }
+
+//    private fun sendNotification() {
+//        createNotificationChannel()
+//        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+//            .setSmallIcon(R.drawable.logo)
+//            .setContentTitle(name)
+//            .setContentText(status)
+//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//
+//        with(NotificationManagerCompat.from(this)) {
+//            if (ActivityCompat.checkSelfPermission(
+//                    applicationContext,
+//                    android.Manifest.permission.POST_NOTIFICATIONS//note to add android
+//                ) != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                return
+//            }
+//            notify(id, builder.build())
+//        }
+//    }
+//
+//    private fun createNotificationChannel() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val channel = NotificationChannel(
+//                CHANNEL_ID, "First Channel",
+//                NotificationManager.IMPORTANCE_DEFAULT
+//            )
+//            channel.description = "Test description for my channel"
+//
+//            val notificationManager =
+//                getSystemService(NotificationManager::class.java)
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//    }
+
+//    private fun startForegroundService(name: String, status: String, id: Int) {
+//        val serviceIntent = Intent(this, NotificationForegroundService::class.java).apply {
+//            putExtra("name", name)
+//            putExtra("status", status)
+//            putExtra("id", id)
+//        }
+//        // Check if the service is already running
+//        if (!isServiceRunning(NotificationForegroundService::class.java)) {
+//            ContextCompat.startForegroundService(this, serviceIntent)
+//        }
+//    }
+//
+//    private fun isServiceRunning(serviceClass: Class<*>): Boolean {
+//        val manager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//        for (service in manager.getRunningServices(Int.MAX_VALUE)) {
+//            if (serviceClass.name == service.service.className) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
+
 }
 
-
-class NotificationReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
-        // Display notification
-        context?.let {
-            val notificationManager =
-                it.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            val notification = NotificationCompat.Builder(context, CHANNEL_ID)
-                .setContentTitle("Title")
-                .setContentText("Notification text")
-                .setSmallIcon(R.drawable.logo)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .build()
-
-            notificationManager.notify(NOTIFICATION_ID, notification)
-        }
-    }
-}
 
 
 
