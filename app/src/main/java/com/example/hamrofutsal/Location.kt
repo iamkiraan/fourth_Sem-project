@@ -50,7 +50,7 @@ fun CurrentLocationContent(usePreciseLocation: Boolean) {
             val intent = Intent(
                 Intent.ACTION_VIEW,
                 //Uri.parse("https://www.google.com/maps/@${latitude},${longitude},14.77z?entry=ttu")
-                Uri.parse("https://www.google.com/maps/dir/27.673603,85.3668518/P9MQ%2B3GX+Manakamana+Futsal,+Gokarneshwor+44600/@${latitude},${longitude},13z/data=!3m1!4b1!4m17!1m7!3m6!1s0x39eb1bd1f0853467:0x345900f774919c3c!2sManakamana+Futsal!8m2!3d27.7327285!4d85.388845!16s%2Fg%2F11h48hb416!4m8!1m1!4e1!1m5!1m1!1s0x39eb1bd1f0853467:0x345900f774919c3c!2m2!1d85.388845!2d27.7327285?entry=ttu")
+                Uri.parse("https://www.google.com/maps/dir/${latitude},${longitude}/P9MQ%2B3GX+Manakamana+Futsal,+Gokarneshwor+44600/@27.7031882,85.332368,13z/data=!3m1!4b1!4m17!1m7!3m6!1s0x39eb1bd1f0853467:0x345900f774919c3c!2sManakamana+Futsal!8m2!3d27.7327285!4d85.388845!16s%2Fg%2F11h48hb416!4m8!1m1!4e1!1m5!1m1!1s0x39eb1bd1f0853467:0x345900f774919c3c!2m2!1d85.388845!2d27.7327285?entry=ttu")
             )
             context.startActivity(intent)
         }
@@ -58,5 +58,3 @@ fun CurrentLocationContent(usePreciseLocation: Boolean) {
 
     }
 }
-
-
