@@ -141,6 +141,8 @@ class OtpActivity : AppCompatActivity() {
                 name = signupname,
                 phoneNumber = PhoneNumber,
                 email = signupemail,
+                address="dhankuta"
+
             )
 
             usersRef.child(uid).setValue(user)

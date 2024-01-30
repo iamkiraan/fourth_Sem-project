@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import com.example.hamrofutsal.CurrentLocationContent
 
@@ -19,7 +20,6 @@ import com.example.hamrofutsal.UserBookingActivity
 import com.example.hamrofutsal.UserDashboardActivity
 
 
-var check : Boolean = false
 class ManakamanaFutsal : AppCompatActivity() {
     private lateinit var BookNow : Button
     private lateinit var OpenMap: Button
@@ -46,8 +46,9 @@ class ManakamanaFutsal : AppCompatActivity() {
         OpenMap.setOnClickListener {
             // Place your click listener logic here
             // This code will execute when the OpenMap button is clicked
-            val composeView = findViewById<ComposeView>(R.id.compose_view)
+            val composeView = findViewById<ComposeView>(R.id.compose_view_map)
             composeView.setContent {
+                val mapUrl = "/P9MQ%2B3GX+Manakamana+Futsal,+Gokarneshwor+44600/@27.7031882,85.332368,13z/data=!3m1!4b1!4m17!1m7!3m6!1s0x39eb1bd1f0853467:0x345900f774919c3c!2sManakamana+Futsal!8m2!3d27.7327285!4d85.388845!16s%2Fg%2F11h48hb416!4m8!1m1!4e1!1m5!1m1!1s0x39eb1bd1f0853467:0x345900f774919c3c!2m2!1d85.388845!2d27.7327285?entry=ttu"
                 if (ActivityCompat.checkSelfPermission(
                         this,
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -58,31 +59,27 @@ class ManakamanaFutsal : AppCompatActivity() {
                 ) {
                     return@setContent
                 }
-                CurrentLocationContent(usePreciseLocation = true)
+                CurrentLocationContent(usePreciseLocation = true,mapUrl)
             }
         }
-//        phone.setOnClickListener{
-//            val phoneNumber = "9865445343" // Replace this with your actual phone number
-//            val callIntent = Intent(Intent.ACTION_CALL)
-//            callIntent.data = Uri.parse("tel:$phoneNumber")
-//
-//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-//                startActivity(callIntent)
-//            } else {
-//                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), 101)
-//            }
-//        }
-//
-//
-//    }
+        phone.setOnClickListener{
+            val composeView = findViewById<ComposeView>(R.id.compose_view_phone)
+            composeView.setContent {
 
-//    private fun checkPermissions() {
-//        if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)!=PackageManager.PERMISSION_GRANTED){
-//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE),101)
-//        }
-//    }
+                InitiatePhoneCall(phone=phone.text.toString())
+            }
+        }
 
+
+
+        
     }
 
 
+}
+@Composable
+fun InitiatePhoneCall(phone: String) {
+    val intent = Intent(Intent.ACTION_DIAL, android.net.Uri.parse("tel:$phone"))
+    val context = LocalContext.current
+    context.startActivity(intent)
 }

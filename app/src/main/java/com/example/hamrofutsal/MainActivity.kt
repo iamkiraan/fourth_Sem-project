@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         Button = findViewById(R.id.Button)
 
         Button.setOnClickListener {
-          val intent = Intent(this,UserDashboardActivity::class.java)
+          val intent = Intent(this,signinActivity::class.java)
             startActivity(intent)
         }
 

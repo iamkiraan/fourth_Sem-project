@@ -1,10 +1,6 @@
 package com.example.hamrofutsal
 
-import UserMenu.UserBookingActivity
-import UserMenu.UserHomeActivity
-import UserMenu.UserProfileActivity
-import UserMenu.UserSearchActivity
-import UserMenu.UserSettingActivity
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View

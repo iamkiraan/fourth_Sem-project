@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="+977-9865445343"
+                android:text="@string/phone"
                 android:textColor="#03A9F4"
                 android:textSize="16sp" />
 
@@ -136,7 +136,15 @@
                 android:layout_marginTop="100dp"/>
 
             <androidx.compose.ui.platform.ComposeView
-                android:id="@+id/compose_view"
+                android:id="@+id/compose_view_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/compose_view_phone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
