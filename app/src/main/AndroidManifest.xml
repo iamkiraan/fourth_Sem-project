@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -24,8 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HamroFutsal"
         tools:targetApi="31">
-
-
 
         <activity
             android:name=".OwnerBookingActivity"
@@ -55,6 +52,42 @@
             android:exported="false" />
         <activity
             android:name=".signinActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.ChysalFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.KickFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.ImadolFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.JadibutiFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.ManakamanaFutsal"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.PrimeFutsal"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserHomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserSettingActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
