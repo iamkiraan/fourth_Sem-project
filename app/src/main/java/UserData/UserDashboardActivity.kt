@@ -1,5 +1,10 @@
 package com.example.hamrofutsal
 
+import UserMenu.UserBookingActivity
+import UserMenu.UserHomeActivity
+import UserMenu.UserProfileActivity
+import UserMenu.UserSearchActivity
+import UserMenu.UserSettingActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,6 +16,7 @@ import androidx.cardview.widget.CardView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import futsalLocation.ManakamanaFutsal
 
 class UserDashboardActivity : AppCompatActivity() {
     private lateinit var buttonNav: BottomAppBar
@@ -39,12 +45,16 @@ class UserDashboardActivity : AppCompatActivity() {
         futsalButton4 = findViewById(R.id.HamroFutsal4)
         futsalButton5 = findViewById(R.id.HamroFutsal5)
         futsalButton6 = findViewById(R.id.HamroFutsal6)
-
-        btnLogout =findViewById(R.id.btnLogout)
-
-        btnLogout.setOnClickListener {
-            logOut()
+        futsalButton1 = findViewById(R.id.HamroFutsal1)
+        futsalButton1.setOnClickListener{
+            val intent = Intent(this,ManakamanaFutsal::class.java)
+            startActivity(intent)
         }
+       // btnLogout =findViewById(R.id.btnLogout)
+
+//        btnLogout.setOnClickListener {
+//            logOut()
+//        }
 
 
 
@@ -78,13 +88,6 @@ class UserDashboardActivity : AppCompatActivity() {
         // clickebale button banauna lai
         val clickAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.click_animation)
 
-        futsalButton1.setOnClickListener {
-
-            it.startAnimation(clickAnimation)
-
-            val intent = Intent(this, UserBookingActivity::class.java)
-            startActivity(intent)
-        }
         futsalButton2.setOnClickListener {
 
             it.startAnimation(clickAnimation)
@@ -123,10 +126,10 @@ class UserDashboardActivity : AppCompatActivity() {
     }
     // clickable button yeta samma ho 6 ota futsal ko lagi
 
-    private fun logOut() {
-        val signInIntent = Intent(this, signinActivity::class.java)
-        startActivity(signInIntent)
-        finish()
-    }
+//    private fun logOut() {
+//        val signInIntent = Intent(this, signinActivity::class.java)
+//        startActivity(signInIntent)
+//        finish()
+//    }
 }
 
