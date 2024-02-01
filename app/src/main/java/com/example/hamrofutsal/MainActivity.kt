@@ -35,21 +35,22 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
 
+
+        super.onCreate(savedInstanceState)
+        val decorView: View = window.decorView
+        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        supportActionBar?.hide()
+        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_IMMERSIVE
+        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+
         sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val uid = sharedPref.getString("uid", "")
         if (!uid.isNullOrEmpty()) {
             val intent = Intent(this, UserDashboardActivity::class.java)
             startActivity(intent)
         } else {
-
-            super.onCreate(savedInstanceState)
-            val decorView: View = window.decorView
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-            supportActionBar?.hide()
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_IMMERSIVE
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 
             setContentView(R.layout.activity_main)
             //message = findViewById(R.id.message)
