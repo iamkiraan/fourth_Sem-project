@@ -1,7 +1,9 @@
 package UserData
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,7 +22,7 @@ class UserInformation : AppCompatActivity() {
     private lateinit var phoneEt: EditText
     private lateinit var confirmButton : Button
 
-
+    private lateinit var sharedPref: SharedPreferences
 
     private lateinit var fullName : String
     private lateinit var email : String
@@ -37,6 +39,8 @@ class UserInformation : AppCompatActivity() {
         emailET = findViewById(R.id.email)
         addressET = findViewById(R.id.address)
         confirmButton = findViewById(R.id.confirmButton)
+
+        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         fullName = ""
         email = ""
@@ -67,21 +71,32 @@ class UserInformation : AppCompatActivity() {
         //phoneNumber
     }
 
-    private fun saveUserToFirebase(fullName : String,email:String,address: String,phoneNumber:String) {
+    @SuppressLint("SuspiciousIndentation")
+    private fun saveUserToFirebase(fullName: String, email: String, address: String, phoneNumber: String) {
         Log.d("OtpActivity", "Saving user data to Firebase")
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
+        val currentUser = FirebaseAuth.getInstance().currentUser
 
-
-            if (uid != null) {
+        currentUser?.let { user ->
+            user.uid?.let { uid ->
                 val usersRef = FirebaseDatabase.getInstance().getReference("users")
                 val user = Users(
                     name = fullName,
                     phoneNumber = phoneNumber,
                     email = email,
                     address = address
-
                 )
+                saveUserInfoPref(fullName, email, address, uid)
                 usersRef.child(uid).setValue(user)
             }
+        }
+    }
+
+    private fun saveUserInfoPref(fullName: String, email: String, address: String, uid: String) {
+        val editor = sharedPref.edit()
+        editor.putString("fullName", fullName)
+        editor.putString("email", email)
+        editor.putString("address", address)
+        editor.putString("uid", uid)
+        editor.apply()
     }
 }

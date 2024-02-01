@@ -3,7 +3,9 @@ package com.example.hamrofutsal
 import UserData.SignUpPhone
 import UserData.SignupActivity
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -11,6 +13,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -24,129 +27,146 @@ class MainActivity : AppCompatActivity() {
     private lateinit var  topView5 : View
     private lateinit var  topView6 : View
     private lateinit var Button : Button
-    private var count: Int = 0
+
+    private lateinit var sharedPref: SharedPreferences
 
 
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val decorView: View = window.decorView
-        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-        window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_FULLSCREEN
-        supportActionBar?.hide()
-        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_IMMERSIVE
-        decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 
-        setContentView(R.layout.activity_main)
-        //message = findViewById(R.id.message)
-        futsalName = findViewById(R.id.futsalNamee)
-        logo = findViewById(R.id.Logo)
-        topView1= findViewById(R.id.topView1)
-        topView2= findViewById(R.id.topView2)
-        topView3= findViewById(R.id.topView3)
-        topView4= findViewById(R.id.topView4)
-        topView5= findViewById(R.id.topView5)
-        topView6= findViewById(R.id.topView6)
-        Button = findViewById(R.id.Button)
-
-        Button.setOnClickListener {
-          val intent = Intent(this, SignUpPhone::class.java)
+        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val uid = sharedPref.getString("uid", "")
+        if (!uid.isNullOrEmpty()) {
+            val intent = Intent(this, UserDashboardActivity::class.java)
             startActivity(intent)
-        }
+        } else {
 
-        val logoAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.zoom_animation)
-        //val messageAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.hold_animation)
-        val text1Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
-        val text2Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
-        val text3Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
-        val text4Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.bottom_view_animation)
-        val text5Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.bottom_view_animation)
-        val text6Animation: Animation = AnimationUtils.loadAnimation(this, R.anim.bottom_view_animation)
-        val fustalAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.zoom_animation)
-        val ButtonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.zoom_animation)
-        topView1.startAnimation(text1Animation)
-        topView6.startAnimation(text6Animation)
-        text1Animation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {
+            super.onCreate(savedInstanceState)
+            val decorView: View = window.decorView
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+            supportActionBar?.hide()
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_IMMERSIVE
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 
+            setContentView(R.layout.activity_main)
+            //message = findViewById(R.id.message)
+            futsalName = findViewById(R.id.futsalNamee)
+            logo = findViewById(R.id.Logo)
+            topView1 = findViewById(R.id.topView1)
+            topView2 = findViewById(R.id.topView2)
+            topView3 = findViewById(R.id.topView3)
+            topView4 = findViewById(R.id.topView4)
+            topView5 = findViewById(R.id.topView5)
+            topView6 = findViewById(R.id.topView6)
+            Button = findViewById(R.id.Button)
+
+            Button.setOnClickListener {
+                val intent = Intent(this, SignUpPhone::class.java)
+                startActivity(intent)
             }
 
-            override fun onAnimationEnd(animation: Animation?) {
-                topView2.visibility = View.VISIBLE
-                topView5.visibility = View.VISIBLE
-                topView2.startAnimation(text2Animation)
-                topView5.startAnimation(text5Animation)
-            }
+            val logoAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.zoom_animation)
+            //val messageAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.hold_animation)
+            val text1Animation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
+            val text2Animation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
+            val text3Animation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.top_views_animation)
+            val text4Animation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.bottom_view_animation)
+            val text5Animation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.bottom_view_animation)
+            val text6Animation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.bottom_view_animation)
+            val fustalAnimation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.zoom_animation)
+            val ButtonAnimation: Animation =
+                AnimationUtils.loadAnimation(this, R.anim.zoom_animation)
+            topView1.startAnimation(text1Animation)
+            topView6.startAnimation(text6Animation)
+            text1Animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
 
-            override fun onAnimationRepeat(animation: Animation?) {
+                }
 
+                override fun onAnimationEnd(animation: Animation?) {
+                    topView2.visibility = View.VISIBLE
+                    topView5.visibility = View.VISIBLE
+                    topView2.startAnimation(text2Animation)
+                    topView5.startAnimation(text5Animation)
+                }
 
-            }
-        })
-        text2Animation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-                topView3.visibility = View.VISIBLE
-                topView4.visibility = View.VISIBLE
-                topView3.startAnimation(text3Animation)
-                topView4.startAnimation(text4Animation)
-            }
-
-            override fun onAnimationRepeat(animation: Animation?) {
-
-
-            }
-        })
-        text3Animation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-                logo.visibility = View.VISIBLE
-                logo.startAnimation(logoAnimation)
-            }
-
-            override fun onAnimationRepeat(animation: Animation?) {
+                override fun onAnimationRepeat(animation: Animation?) {
 
 
-            }
-        })
-        logoAnimation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {
+                }
+            })
+            text2Animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
 
-            }
+                }
 
-            override fun onAnimationEnd(animation: Animation?) {
-                futsalName.visibility = View.VISIBLE
-                futsalName.startAnimation(fustalAnimation)
-            }
+                override fun onAnimationEnd(animation: Animation?) {
+                    topView3.visibility = View.VISIBLE
+                    topView4.visibility = View.VISIBLE
+                    topView3.startAnimation(text3Animation)
+                    topView4.startAnimation(text4Animation)
+                }
 
-            override fun onAnimationRepeat(animation: Animation?) {
-
-
-            }
-        })
-        fustalAnimation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation?) {
-
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-                Button.visibility = View.VISIBLE
-                Button.startAnimation(ButtonAnimation)
-            }
-
-            override fun onAnimationRepeat(animation: Animation?) {
+                override fun onAnimationRepeat(animation: Animation?) {
 
 
-            }
-        })
+                }
+            })
+            text3Animation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
+
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    logo.visibility = View.VISIBLE
+                    logo.startAnimation(logoAnimation)
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) {
+
+
+                }
+            })
+            logoAnimation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
+
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    futsalName.visibility = View.VISIBLE
+                    futsalName.startAnimation(fustalAnimation)
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) {
+
+
+                }
+            })
+            fustalAnimation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {
+
+                }
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    Button.visibility = View.VISIBLE
+                    Button.startAnimation(ButtonAnimation)
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) {
+
+
+                }
+            })
 
 
 //        fustalAnimation.setAnimationListener(object : Animation.AnimationListener {
@@ -190,5 +210,6 @@ class MainActivity : AppCompatActivity() {
 //        })
 
 
+        }
     }
 }

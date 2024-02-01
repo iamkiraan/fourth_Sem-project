@@ -1,7 +1,9 @@
 package UserData
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -26,11 +28,15 @@ class SignUpPhone : AppCompatActivity() {
     private lateinit var getOTP: Button
     private lateinit var phoneNumber: EditText
 
+    private lateinit var sharedPref: SharedPreferences
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up_phone)
+
+        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
 
         auth = FirebaseAuth.getInstance()
 
@@ -68,6 +74,7 @@ class SignUpPhone : AppCompatActivity() {
                             // This method will be called when the verification code is successfully sent
                             this@SignUpPhone.verificationId = newVerificationId
                             Log.d("SignUpPhone", "Verification code sent to $number")
+                            savePhoneNumberPref(number)
 
                             val intent = Intent(this@SignUpPhone, OtpActivity::class.java)
                             intent.putExtra("verificationId", newVerificationId)
@@ -81,4 +88,10 @@ class SignUpPhone : AppCompatActivity() {
             }
         }
     }
+    private fun savePhoneNumberPref(number: String) {
+        val editor = sharedPref.edit()
+        editor.putString("phoneNumber", number)
+        editor.apply()
+    }
 }
+
