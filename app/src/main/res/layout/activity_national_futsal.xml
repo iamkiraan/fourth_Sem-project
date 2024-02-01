@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00041C"
-    tools:context="futsalLocation.ChysalFutsal">
+    tools:context="futsalLocation.NationalFutsal">
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/baseline_arrow_back_24"
+        app:srcCompat="@drawable/baseline_arrow_back_24"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:id="@+id/backManakamana"/>
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="-140dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/imadolfutsal"
+        app:srcCompat="@drawable/imadolfutsal"
         />
 
     <TextView
@@ -49,12 +49,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Address: P9MQ+3GX, Gokarneshwor 44600"
-            android:textSize="18sp"
-            android:textColor="@color/white"
             android:layout_marginStart="10dp"
-            android:textStyle="bold"/>
+            android:layout_marginTop="20dp"
+            android:text="Address: Chyasal, Lalitpur"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -72,15 +72,15 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/phoneId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="+977-9865445343"
+                android:text="01-5434470"
                 android:textColor="#03A9F4"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="kishorachrya844@gmail.com"
+                android:text="nationalfutsal@gmail.com"
                 android:textColor="#03A9F4"
                 android:textSize="16sp" />
 
@@ -134,6 +134,23 @@
                 android:id="@+id/OpenMap"
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="100dp"/>
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/compose_view_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/compose_view_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
 

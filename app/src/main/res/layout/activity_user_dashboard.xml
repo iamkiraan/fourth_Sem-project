@@ -13,7 +13,7 @@
         <ImageView
             android:layout_width="80dp"
             android:layout_height="100dp"
-            android:src="@drawable/baseline_person_24"
+            app:srcCompat="@drawable/baseline_person_24"
             android:layout_marginTop="40dp"
             android:layout_marginStart="50dp"
             />
@@ -43,7 +43,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_logout_24"
+            app:srcCompat="@drawable/baseline_logout_24"
             android:layout_marginStart="80dp"
             android:layout_marginTop="60dp"
             android:id="@+id/btnLogout"/>
@@ -83,7 +83,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/baseline_home_24"
+                    app:srcCompat="@drawable/baseline_home_24"
                     android:layout_gravity="center" />
 
                 <!--                <TextView-->
@@ -111,7 +111,7 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/baseline_home_24"
+                    app:srcCompat="@drawable/baseline_home_24"
                     android:layout_gravity="center" />
             </androidx.cardview.widget.CardView>
 
@@ -135,7 +135,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/baseline_home_24"
+                    app:srcCompat="@drawable/baseline_home_24"
                     />
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -151,7 +151,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/baseline_home_24"
+                    app:srcCompat="@drawable/baseline_home_24"
 
                     />
             </androidx.cardview.widget.CardView>
@@ -177,7 +177,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/baseline_home_24"/>
+                    app:srcCompat="@drawable/baseline_home_24"/>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:id="@+id/HamroFutsal6"
@@ -192,7 +192,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/baseline_home_24" />
+                    app:srcCompat="@drawable/baseline_home_24" />
             </androidx.cardview.widget.CardView>
 
 

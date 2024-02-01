@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/baseline_arrow_back_24"
+        app:srcCompat="@drawable/baseline_arrow_back_24"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:id="@+id/backManakamana"/>
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="-140dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/manakamana"
+        app:srcCompat="@drawable/manakamana"
         />
 
     <TextView
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Address: P9MQ+3GX, Gokarneshwor 44600"
+            android:text="Address: Gokarneswor, Kathmandu"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:layout_marginStart="10dp"
@@ -72,15 +72,15 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-               android:textStyle="bold"
                 android:id="@+id/phoneId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/phone"
+                android:text="9808403232"
                 android:textColor="#03A9F4"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
         </LinearLayout>

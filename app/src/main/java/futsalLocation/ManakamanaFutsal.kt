@@ -8,12 +8,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
-import com.example.hamrofutsal.CurrentLocationContent
 
 import com.example.hamrofutsal.R
 import com.example.hamrofutsal.UserBookingActivity
@@ -69,17 +67,8 @@ class ManakamanaFutsal : AppCompatActivity() {
                 InitiatePhoneCall(phone=phone.text.toString())
             }
         }
-
-
-
         
     }
 
 
-}
-@Composable
-fun InitiatePhoneCall(phone: String) {
-    val intent = Intent(Intent.ACTION_DIAL, android.net.Uri.parse("tel:$phone"))
-    val context = LocalContext.current
-    context.startActivity(intent)
 }

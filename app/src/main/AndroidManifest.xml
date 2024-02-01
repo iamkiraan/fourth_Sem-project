@@ -23,7 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HamroFutsal"
         tools:targetApi="31">
-
+        <activity
+            android:name="UserData.UserInformation"
+            android:exported="false" />
+        <activity
+            android:name="UserData.SignUpPhone"
+            android:exported="false" />
+        <activity
+            android:name="futsalLocation.NationalFutsal"
+            android:exported="false" />
         <activity
             android:name=".OwnerBookingActivity"
             android:exported="false" />

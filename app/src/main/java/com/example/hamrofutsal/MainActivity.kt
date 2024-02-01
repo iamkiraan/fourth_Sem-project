@@ -1,5 +1,7 @@
 package com.example.hamrofutsal
 
+import UserData.SignUpPhone
+import UserData.SignupActivity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         Button = findViewById(R.id.Button)
 
         Button.setOnClickListener {
-          val intent = Intent(this,signinActivity::class.java)
+          val intent = Intent(this, SignUpPhone::class.java)
             startActivity(intent)
         }
 

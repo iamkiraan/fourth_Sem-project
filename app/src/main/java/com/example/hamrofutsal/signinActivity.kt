@@ -1,5 +1,6 @@
 package com.example.hamrofutsal
 
+import UserData.SignupActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -31,7 +32,7 @@ class signinActivity : AppCompatActivity() {
 
         val registerText = findViewById<TextView>(R.id.register)
         registerText.setOnClickListener {
-            val intent = Intent(this, signupActivity::class.java)
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
 

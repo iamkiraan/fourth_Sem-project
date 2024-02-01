@@ -1,6 +1,7 @@
 package com.example.hamrofutsal
 
 
+import UserMenu.UserProfileActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,7 +13,12 @@ import androidx.cardview.widget.CardView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import futsalLocation.ImadolFutsal
+import futsalLocation.JadibutiFutsal
+import futsalLocation.KickFutsal
 import futsalLocation.ManakamanaFutsal
+import futsalLocation.NationalFutsal
+import futsalLocation.PrimeFutsal
 
 class UserDashboardActivity : AppCompatActivity() {
     private lateinit var buttonNav: BottomAppBar
@@ -41,11 +47,7 @@ class UserDashboardActivity : AppCompatActivity() {
         futsalButton4 = findViewById(R.id.HamroFutsal4)
         futsalButton5 = findViewById(R.id.HamroFutsal5)
         futsalButton6 = findViewById(R.id.HamroFutsal6)
-        futsalButton1 = findViewById(R.id.HamroFutsal1)
-        futsalButton1.setOnClickListener{
-            val intent = Intent(this,ManakamanaFutsal::class.java)
-            startActivity(intent)
-        }
+
        // btnLogout =findViewById(R.id.btnLogout)
 
 //        btnLogout.setOnClickListener {
@@ -84,39 +86,46 @@ class UserDashboardActivity : AppCompatActivity() {
         // clickebale button banauna lai
         val clickAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.click_animation)
 
+        futsalButton1.setOnClickListener {
+
+            it.startAnimation(clickAnimation)
+
+            val intent = Intent(this, ImadolFutsal::class.java)
+            startActivity(intent)
+        }
         futsalButton2.setOnClickListener {
 
             it.startAnimation(clickAnimation)
 
-            val intent = Intent(this, UserBookingActivity::class.java)
+            val intent = Intent(this, JadibutiFutsal::class.java)
             startActivity(intent)
         }
         futsalButton3.setOnClickListener {
 
             it.startAnimation(clickAnimation)
 
-            val intent = Intent(this, UserBookingActivity::class.java)
+            val intent = Intent(this, KickFutsal::class.java)
             startActivity(intent)
         }
         futsalButton4.setOnClickListener {
 
             it.startAnimation(clickAnimation)
 
-            val intent = Intent(this, UserBookingActivity::class.java)
+            val intent = Intent(this, ManakamanaFutsal::class.java)
             startActivity(intent)
         }
-        futsalButton5.setOnClickListener {
+        futsalButton5.setOnClickListener{
 
             it.startAnimation(clickAnimation)
 
-            val intent = Intent(this, UserBookingActivity::class.java)
+            val intent = Intent(this,NationalFutsal::class.java)
             startActivity(intent)
         }
         futsalButton6.setOnClickListener {
 
             it.startAnimation(clickAnimation)
 
-            val intent = Intent(this, UserBookingActivity::class.java)
+            val intent = Intent(this, PrimeFutsal::class.java)
             startActivity(intent)
         }
     }

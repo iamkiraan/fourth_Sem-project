@@ -1,5 +1,6 @@
 package com.example.hamrofutsal
 
+import UserData.UserInformation
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -31,8 +32,6 @@ class OtpActivity : AppCompatActivity() {
     private lateinit var verifyOTP: Button
     private lateinit var numberText : TextView
     private lateinit var resendText: TextView
-    private lateinit var signupname: String
-    private lateinit var signupemail: String
     private lateinit var PhoneNumber: String
     private lateinit var verificationId: String
 
@@ -57,8 +56,6 @@ class OtpActivity : AppCompatActivity() {
         verifyOTP = findViewById(R.id.Verify)
 
         // Retrieve data from the intent
-        signupname = intent.getStringExtra("name") ?: ""
-        signupemail = intent.getStringExtra("email") ?: ""
         PhoneNumber = intent.getStringExtra("PhoneNumber") ?: ""
         verificationId = intent.getStringExtra("verificationId") ?: ""
 
@@ -121,36 +118,19 @@ class OtpActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("OtpActivity", "User authentication successful")
-                    // Save user data to Firebase after successful authentication
-                    saveUserToFirebase()
                     // Navigate to the desired activity
-                    navigateToSignInActivity()
+                    navigateToUserInformation()
                 } else {
                     Toast.makeText(this@OtpActivity, "Verification failed", Toast.LENGTH_SHORT).show()
                 }
             }
     }
 
-    private fun saveUserToFirebase() {
-        Log.d("OtpActivity", "Saving user data to Firebase")
-        val uid = FirebaseAuth.getInstance().currentUser?.uid
 
-        if (uid != null) {
-            val usersRef = FirebaseDatabase.getInstance().getReference("users")
-            val user = Users(
-                name = signupname,
-                phoneNumber = PhoneNumber,
-                email = signupemail,
-                address="dhankuta"
 
-            )
-
-            usersRef.child(uid).setValue(user)
-        }
-    }
-
-    private fun navigateToSignInActivity() {
-        val intent = Intent(this@OtpActivity, signinActivity::class.java)
+    private fun navigateToUserInformation() {
+        val intent = Intent(this@OtpActivity, UserInformation::class.java)
+        intent.putExtra("phoneNumber",PhoneNumber)
         startActivity(intent)
         finish()
     }

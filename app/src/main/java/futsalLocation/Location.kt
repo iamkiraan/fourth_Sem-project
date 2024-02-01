@@ -1,4 +1,4 @@
-package com.example.hamrofutsal
+package futsalLocation
 
 import android.Manifest
 import android.annotation.SuppressLint
