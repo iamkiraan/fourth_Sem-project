@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
 
 
@@ -58,13 +60,22 @@
             android:name="firebase_analytics_collection_enabled"
             android:value="false" />
         <service
-            android:name=".NotificationForegroundService"
+            android:name=".Dashboard"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <receiver android:name=".Dashboard" />
+        <receiver
+            android:name=".Dashboard"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com." />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

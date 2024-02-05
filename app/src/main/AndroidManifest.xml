@@ -13,6 +13,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -39,9 +44,6 @@
             android:name=".UserBookingActivity"
             android:exported="false" />
         <activity
-            android:name=".OwnerProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".ResendActivity"
             android:exported="false" />
         <activity
@@ -53,19 +55,10 @@
         <!-- android:name=".UserActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".OwnerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".signupActivity"
-            android:exported="false" />
-        <activity
             android:name=".signinActivity"
             android:exported="false" />
         <activity
             android:name=".UserDashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name="futsalLocation.ChysalFutsal"
             android:exported="false" />
         <activity
             android:name="futsalLocation.KickFutsal"
@@ -89,9 +82,6 @@
             android:name=".UserHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".UserProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".UserSearchActivity"
             android:exported="false" />
         <activity
@@ -106,6 +96,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".PushNotificationService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+<!--        <receiver-->
+<!--            android:name="."-->
+<!--            android:exported="true"-->
+<!--            android:permission="com.google.android.c2dm.permission.SEND">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.android.c2dm.intent.RECEIVE" />-->
+<!--                <category android:name="com." />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
     </application>
 
 </manifest>

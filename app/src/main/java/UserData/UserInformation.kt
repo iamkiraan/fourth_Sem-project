@@ -14,6 +14,7 @@ import com.example.hamrofutsal.UserDashboardActivity
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 
 class UserInformation : AppCompatActivity() {
     private lateinit var fullNameET: EditText
@@ -28,6 +29,7 @@ class UserInformation : AppCompatActivity() {
     private lateinit var email : String
     private lateinit var address : String
     private lateinit var phoneNumber : String
+    private lateinit var fcmToken : String
 
 
     @SuppressLint("MissingInflatedId")
@@ -45,6 +47,10 @@ class UserInformation : AppCompatActivity() {
         fullName = ""
         email = ""
         address= ""
+        phoneNumber = intent.getStringExtra("phoneNumber") ?: ""
+        fcmToken = sharedPref.getString("fcmToken", "").toString()
+
+        //phoneEt.setText(phoneNumber)
 
 
 
@@ -54,15 +60,17 @@ class UserInformation : AppCompatActivity() {
             fullName = fullNameET.text.toString()
             email = emailET.text.toString()
             address = addressET.text.toString()
-            phoneNumber = intent.getStringExtra("phoneNumber") ?: ""
-            if(fullName.isEmpty()&&email.isEmpty()&&address.isEmpty()) {
+
+            if(fullName.isEmpty()||email.isEmpty()||address.isEmpty()||phoneNumber.isEmpty()) {
                 Toast.makeText(this@UserInformation, "Please, fill all the field!", Toast.LENGTH_SHORT).show()
             }
             else {
+
                 saveUserToFirebase(fullName,email,address,phoneNumber)
                 val intent = Intent(this@UserInformation, UserDashboardActivity::class.java)
                 startActivity(intent)
                 finish()
+
             }
         }
 
@@ -73,20 +81,23 @@ class UserInformation : AppCompatActivity() {
 
     @SuppressLint("SuspiciousIndentation")
     private fun saveUserToFirebase(fullName: String, email: String, address: String, phoneNumber: String) {
-        Log.d("OtpActivity", "Saving user data to Firebase")
+
         val currentUser = FirebaseAuth.getInstance().currentUser
+        FirebaseMessaging.getInstance().setDeliveryMetricsExportToBigQuery(true)
 
         currentUser?.let { user ->
-            user.uid?.let { uid ->
+            user.uid.let { uid ->
+
                 val usersRef = FirebaseDatabase.getInstance().getReference("users")
                 val user = Users(
                     name = fullName,
                     phoneNumber = phoneNumber,
                     email = email,
-                    address = address
+                    address = address,
+                    fcmToken = fcmToken
                 )
                 saveUserInfoPref(fullName, email, address, uid)
-                usersRef.child(uid).setValue(user)
+                usersRef.child(uid).child("userInfo").setValue(user)
             }
         }
     }

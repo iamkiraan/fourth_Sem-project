@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.hamrofutsal.OtpActivity
 import com.example.hamrofutsal.R
+import com.example.hamrofutsal.databinding.ActivityOtpBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -34,6 +36,8 @@ class SignUpPhone : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_FULLSCREEN
+        supportActionBar?.hide()
         setContentView(R.layout.activity_sign_up_phone)
 
         sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)

@@ -4,6 +4,7 @@ package com.example.hamrofutsal
 import UserMenu.UserProfileActivity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.messaging.FirebaseMessaging
 import futsalLocation.ImadolFutsal
 import futsalLocation.JadibutiFutsal
 import futsalLocation.KickFutsal
@@ -128,7 +130,18 @@ class UserDashboardActivity : AppCompatActivity() {
             val intent = Intent(this, PrimeFutsal::class.java)
             startActivity(intent)
         }
+//        FirebaseMessaging.getInstance().setDeliveryMetricsExportToBigQuery(true)
+//        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+//            if (task.isSuccessful) {
+//                val token = task.result
+//                Log.d("FCM Token", token)
+//                // Do something with the token, like send it to your server
+//            } else {
+//                Log.e("FCM Token", "Failed to get token: ${task.exception?.message}")
+//            }
+//        }
     }
+
     // clickable button yeta samma ho 6 ota futsal ko lagi
 
 //    private fun logOut() {

@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         topView5= findViewById(R.id.topView5)
         topView6= findViewById(R.id.topView6)
         Button = findViewById(R.id.Button)
+
+
         Button.setOnClickListener {
 
             val intent = Intent(this, signinActivity::class.java)

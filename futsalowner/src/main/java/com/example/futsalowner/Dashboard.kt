@@ -5,13 +5,17 @@ import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
@@ -19,9 +23,9 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.futsalowner.MyForegroundServices.Companion.CHANNEL_ID
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.*
-
-
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class Dashboard : AppCompatActivity() {
@@ -48,6 +52,8 @@ class Dashboard : AppCompatActivity() {
         bookingsRef = database.getReference("bookings")
 
         val linearLayout: LinearLayout = findViewById(R.id.linearLayout)
+
+
 
         // Clear previous data
         linearLayout.removeAllViews()
@@ -103,8 +109,16 @@ class Dashboard : AppCompatActivity() {
             }
         })
 
-//        val serviceIntent = Intent(this@Dashboard, MyForegroundServices::class.java)
-//        startService(serviceIntent)
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val token = task.result
+                Log.d("FCM Token", token)
+                // Do something with the token, like send it to your server
+            } else {
+                Log.e("FCM Token", "Failed to get token: ${task.exception?.message}")
+            }
+        }
+
 
 
     }
@@ -168,6 +182,8 @@ class Dashboard : AppCompatActivity() {
 //        }
 //        return false
 //    }
+// Declare the launcher at the top of your Activity/Fragment:
+
 
 }
 

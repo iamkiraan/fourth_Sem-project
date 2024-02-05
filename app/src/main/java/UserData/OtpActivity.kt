@@ -1,7 +1,9 @@
 package com.example.hamrofutsal
 
 import UserData.UserInformation
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,6 +21,7 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.concurrent.TimeUnit
 
 class OtpActivity : AppCompatActivity() {
@@ -35,6 +38,8 @@ class OtpActivity : AppCompatActivity() {
     private lateinit var PhoneNumber: String
     private lateinit var verificationId: String
 
+    private lateinit var sharedPref: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.decorView.systemUiVisibility= View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -50,6 +55,7 @@ class OtpActivity : AppCompatActivity() {
         inputCode5 = findViewById(R.id.InputCode5)
         inputCode6 = findViewById(R.id.InputCode6)
         numberText = findViewById(R.id.textView)
+        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         PhoneNumber = intent.getStringExtra("PhoneNumber") ?: ""
         numberText.text = PhoneNumber
         setupOtpInput()
@@ -113,13 +119,31 @@ class OtpActivity : AppCompatActivity() {
         })
     }
 
+
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        FirebaseMessaging.getInstance().setDeliveryMetricsExportToBigQuery(true)
         FirebaseAuth.getInstance().signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d("OtpActivity", "User authentication successful")
-                    // Navigate to the desired activity
-                    navigateToUserInformation()
+                    FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val fcmToken = task.result
+                            Log.d("FCM Token", fcmToken)
+
+                            // Save the FCM token to SharedPreferences
+                            val editor = sharedPref.edit()
+                            editor.putString("fcmToken", fcmToken)
+                            editor.apply()
+
+                            // Navigate to the desired activity
+                            navigateToUserInformation()
+
+                        } else {
+                            Log.e("FCM Token", "Failed to get token: ${task.exception?.message}")
+                        }
+                    }
+
                 } else {
                     Toast.makeText(this@OtpActivity, "Verification failed", Toast.LENGTH_SHORT).show()
                 }
@@ -172,4 +196,10 @@ class OtpActivity : AppCompatActivity() {
 
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
+    private fun saveUserInfoPref(fcmToken: String) {
+        val editor = sharedPref.edit()
+        editor.putString("fcmToken", fcmToken)
+        editor.apply()
+    }
 }
+
