@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00041C"
+    tools:context="UserData.SignUpPhone">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="142dp"
+        android:layout_marginTop="123dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginBottom="537dp"
+        android:src="@drawable/logo" />
+
+    <View
+        android:layout_width="18dp"
+        android:layout_height="120dp"
+        android:id="@+id/topView1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:background="#FFFFFF"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="90dp"
+        android:id="@+id/topView2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:background="#5AB397"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="60dp"
+        android:id="@+id/topView3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="80dp"
+        android:background="#AC2732"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="60dp"
+        android:id="@+id/topView4"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="80dp"
+        android:background="#AC2732"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="90dp"
+        android:id="@+id/topView5"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:background="#5AB397"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="120dp"
+        android:id="@+id/topView6"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:background="#FFFFFF"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/white"
+        android:foregroundGravity="center"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edittext"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/loginText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textAlignment="center"
+                android:textColor="#00041C"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/custom_edittext"
+                android:drawableLeft="@drawable/baseline_call_24"
+                android:drawablePadding="8dp"
+                android:hint="Phone number"
+                android:padding="8dp"
+                android:textColor="#000000"
+                android:textColorHint="#686666" />
+
+            <Button
+                android:id="@+id/getOTP"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#00041C"
+                android:text="Get OTP"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:cornerRadius="180dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

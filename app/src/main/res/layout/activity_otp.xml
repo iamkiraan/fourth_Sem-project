@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:id="@+id/otp"
-                android:src="@drawable/otp"/>
+                app:srcCompat="@drawable/otp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,6 +82,17 @@
                 android:layout_marginTop="20dp"
                 android:textStyle="bold"
                 android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="297dp"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
             <TextView
                 android:id="@+id/InNumber"
                 android:layout_width="wrap_content"
@@ -102,7 +113,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:imeOptions="actionNext"
-                    android:importantForAutofill="no"
+                    android:importantForAutofill="yes"
                     android:inputType="number"
                     android:maxLength="1"
                     android:textColor="@color/black"
@@ -115,7 +126,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:imeOptions="actionNext"
-                    android:importantForAutofill="no"
+                    android:importantForAutofill="yes"
                     android:inputType="number"
                     android:maxLength="1"
                     android:textColor="@color/black"
@@ -128,7 +139,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:imeOptions="actionNext"
-                    android:importantForAutofill="no"
+                    android:importantForAutofill="yes"
                     android:inputType="number"
                     android:maxLength="1"
                     android:textColor="@color/black"
@@ -141,7 +152,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:imeOptions="actionNext"
-                    android:importantForAutofill="no"
+                    android:importantForAutofill="yes"
                     android:inputType="number"
                     android:maxLength="1"
                     android:textColor="@color/black"
@@ -154,7 +165,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:imeOptions="actionNext"
-                    android:importantForAutofill="no"
+                    android:importantForAutofill="yes"
                     android:inputType="number"
                     android:maxLength="1"
                     android:textColor="@color/black"
@@ -167,7 +178,7 @@
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:imeOptions="actionDone"
-                    android:importantForAutofill="no"
+                    android:importantForAutofill="yes"
                     android:inputType="number"
                     android:maxLength="1"
                     android:textColor="@color/black"

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#00041C"
+    tools:context=".UserBookingActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="Availabe Time slots"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn7to8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="7-8" />
+
+        <Button
+            android:id="@+id/btn8to9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8-9"
+            android:shadowRadius="20"/>
+
+        <Button
+            android:id="@+id/btn9to10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="9-10" />
+
+        <Button
+            android:id="@+id/btn10to11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10-11" />
+
+        <Button
+            android:id="@+id/btn11to12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="11-12" />
+
+        <Button
+            android:id="@+id/btn12to1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12-1" />
+
+        <Button
+            android:id="@+id/btn1to2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1-2" />
+
+        <Button
+            android:id="@+id/btn2to3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2-3" />
+
+        <Button
+            android:id="@+id/btn3to4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3-4" />
+
+        <Button
+            android:id="@+id/btn4to5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4-5" />
+
+        <Button
+            android:id="@+id/btn5to6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5-6" />
+
+        <Button
+            android:id="@+id/btn6to7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6-7" />
+    </LinearLayout>
+</LinearLayout>

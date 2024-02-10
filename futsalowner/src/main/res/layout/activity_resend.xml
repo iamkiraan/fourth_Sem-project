@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00041C"
+    tools:context=".ResendActivity">
+
+    <View
+        android:layout_width="18dp"
+        android:layout_height="120dp"
+        android:id="@+id/topView1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:background="#FFFFFF"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="90dp"
+        android:id="@+id/topView2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:background="#5AB397"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="60dp"
+        android:id="@+id/topView3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="80dp"
+        android:background="#AC2732"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="60dp"
+        android:id="@+id/topView4"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="80dp"
+        android:background="#AC2732"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="90dp"
+        android:id="@+id/topView5"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="50dp"
+        android:background="#5AB397"/>
+    <View
+        android:layout_width="18dp"
+        android:layout_height="120dp"
+        android:id="@+id/topView6"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:background="#FFFFFF"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:foregroundGravity="center"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp"
+            android:background="@drawable/custom_edittext">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="OTP RESEND"
+                android:id="@+id/ResendOTP"
+                android:textSize="36sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="#00041C"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Re-Enter you phone number to resend OTP"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:textColor="#00041C"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/UserName"
+                android:background="@drawable/custom_edittext"
+                android:layout_marginTop="16dp"
+                android:padding="8dp"
+                android:hint="Phone Number"
+                android:drawableLeft="@drawable/baseline_call_24"
+                android:textColor="@color/black"
+                android:drawablePadding="8dp"/>
+            <Button
+                android:layout_marginTop="16dp"
+                android:id="@+id/Resend"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="#00041C"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:text="Resend"
+                app:cornerRadius="180dp" />
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

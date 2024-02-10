@@ -1,0 +1,89 @@
+
+
+
+
+
+//first way to read data individiually
+        val btnId = 2131231280
+        val buttonId = btnId.toString()
+
+        bookingsRef.child(buttonId).get().addOnSuccessListener {
+            if (it.exists()){
+                val buttonID = it.child("buttonId").value
+                val status = it.child("status").value
+                val name = it.child("name").value
+                Toast.makeText(this,"Results Found",Toast.LENGTH_SHORT).show()
+                textView1.text = buttonID.toString()
+                textView2.text = status.toString()
+                textView3.text = name.toString()
+
+            }else{
+                Toast.makeText(this,"Phone number does not exist",Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener{
+            Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show()
+        }
+
+
+
+
+//second way to read data individually
+        val btnId = 2131231280
+        val buttonId = btnId.toString()
+        bookingsRef.child(buttonId).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    val buttonID = dataSnapshot.child("buttonId").value
+                    val status = dataSnapshot.child("status").value
+                    val name = dataSnapshot.child("name").value
+
+                    // Update TextViews with retrieved data
+                    textView1.text = buttonID.toString()
+                    textView2.text = name.toString()
+                    textView3.text = status.toString()
+
+                } else {
+                    Toast.makeText(this@Dashboard, "Data for the given button ID does not exist", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle error
+                Toast.makeText(this@Dashboard, "Error: ${databaseError.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+
+
+        //send notifications
+        createNotificationChannel()
+
+
+                var builder = NotificationCompat.Builder(this,CHANNEL_ID)
+                builder.setSmallIcon(R.drawable.logo)
+                    .setContentTitle("Hamro futsal")
+                    .setContentText("first try")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                with(NotificationManagerCompat.from(this)){
+                    if (ActivityCompat.checkSelfPermission(
+                            applicationContext,
+                            Manifest.permission.POST_NOTIFICATIONS
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+
+                        return
+                    }
+                    notify(1,builder.build())
+                }
+            }
+
+            private fun createNotificationChannel() {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    val channel = NotificationChannel(CHANNEL_ID,"First Channel",
+                        NotificationManager.IMPORTANCE_DEFAULT)
+                    channel.description = "Test description for my channel"
+
+                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager.createNotificationChannel(channel)
+                }
